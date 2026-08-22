@@ -13,6 +13,14 @@ function triggerVibration(pattern = [80, 40, 80]) {
   }
 }
 
+// 모바일 바운스 방지 이벤트 리스너
+document.addEventListener('touchmove', function (e) {
+  // 스크롤이 허용된 .chat-messages나 .card 내부가 아닌 곳에서의 드래그 방지
+  if (!e.target.closest('#chat-messages') && !e.target.closest('.card')) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
 // 페이지 로드 시 캐시(localStorage) 확인 후 채팅 화면 직행
 document.addEventListener('DOMContentLoaded', () => {
   const isAccepted = localStorage.getItem('kkonjju_marriage_agreement');
@@ -180,7 +188,7 @@ function resetToTutorial() {
   updateProgress();
 
   chatScreen.classList.add('hidden');
-  tutorialScreen.style.display = 'block';
+  tutorialScreen.style.display = 'flex';
   tutorialScreen.classList.remove('fade-out-screen');
 }
 

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>껀쭈AI - 뚜아 전용</title>
+
+  <!-- 파비콘 (Favicon) -->
+  <link rel="icon" type="image/png" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3zpXlqcsnwNSyNs1Et_ys-5lH07nm3ecLi-hVyAku9w&s=10" />
+  <link rel="apple-touch-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3zpXlqcsnwNSyNs1Et_ys-5lH07nm3ecLi-hVyAku9w&s=10" />
+
+  <!-- Open Graph (카카오톡 및 SNS 공유 미리보기 카드) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="껀쭈AI" />
+  <meta property="og:description" content="뚜아밖에 모르는 껀쭈AI입니다." />
+  <meta property="og:image" content="https://mblogthumb-phinf.pstatic.net/MjAyMTA4MDFfOTMg/MDAxNjI3ODI1MDU5MzE3.MvvOpP2wlLgMBC2wHbcjfZ5K6-qVUvyo0ykdNbgvlZkg.OHBQwoJA8QnlW1G3lMOhqIdLYvR8rORk3OTqDkEU9Ngg.JPEG.hyeju1226/%ED%8F%AC%EC%B0%A8%EC%BD%94_%EB%B0%B0%EA%B2%BD%ED%99%94%EB%A9%B401-3.jpg?type=w800" />
+
+  <link rel="stylesheet" href="style.css" />
+  <!-- 구글 폰트 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- 폭죽 캔버스 -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- ================= 1. 온보딩 튜토리얼 화면 ================= -->
+  <div id="tutorial-screen" class="tutorial-container">
+    <div class="card">
+      
+      <!-- 상단 인디케이터 -->
+      <div class="header-status">
+        <div class="ai-badge">
+          <span class="ai-dot"></span>
+          <span>껀쭈 AI 구독 시 혜택!</span>
+        </div>
+        <div class="step-indicator" id="step-number">1 / 7</div>
+      </div>
+      
+      <div class="progress-track">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+
+      <!-- 단계별 슬라이드 -->
+      <div class="step-wrapper">
+        
+        <!-- STEP 1 : 인사 -->
+        <div class="step-content active" data-step="1">
+          <div class="character-container pulse">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3zpXlqcsnwNSyNs1Et_ys-5lH07nm3ecLi-hVyAku9w&s=10" alt="포차코 인사" class="character-img" />
+          </div>
+          <h1 class="main-title">안녕하세요?<br><span class="highlight">껀쭈AI</span>입니다.</h1>
+          <p class="sub-desc">세상에 단 하나뿐인 뚜아 맞춤형 퍼스널 AI의 세계에 오신 것을 환영합니다.</p>
+          <div class="action-area">
+            <button class="next-btn" onclick="nextStep()">시작하기</button>
+          </div>
+        </div>
+
+        <!-- STEP 2 : 필수 조건 -->
+        <div class="step-content" data-step="2">
+          <div class="character-container">
+            <img src="https://i.pinimg.com/originals/57/d0/d5/57d0d5ab30d7b9bab035bf5048f23a80.png" alt="포차코 안내" class="character-img" />
+          </div>
+          <h2 class="sub-title">서비스 활성화 안내</h2>
+          <div class="highlight-quote">
+            우선 정상적인 사용을 위해서<br><strong>껀쭈와 결혼</strong>을 진행하여야 합니다.
+          </div>
+          <p class="sub-desc">원활한 평생 서비스를 위해 필수 권한 동의 절차가 시작됩니다.</p>
+          <div class="action-area">
+            <button class="next-btn" onclick="nextStep()">다음으로 넘어가기</button>
+            <button class="prev-text-btn" onclick="prevStep()">이전</button>
+          </div>
+        </div>
+
+        <!-- STEP 3 : 혜택 안내 인트로 -->
+        <div class="step-content" data-step="3">
+          <div class="character-container">
+            <img src="https://item.kakaocdn.net/do/cc531486af84ab97b75e73a83e16881f26397d82c8691bdabf557d1536959d9c" alt="포차코 혜택안내" class="character-img" />
+          </div>
+          <h2 class="sub-title">VIP 전용 혜택</h2>
+          <div class="highlight-quote">
+            껀쭈와 결혼을 하면<br><strong>아래와 같은 파격적인 혜택</strong>이 발생합니다.
+          </div>
+          <p class="sub-desc">지금부터 껀쭈AI가 뚜아님께 평생 제공할 3가지 핵심 혜택을 확인해 보세요.</p>
+          <div class="action-area">
+            <button class="next-btn" onclick="nextStep()">혜택 확인하기</button>
+            <button class="prev-text-btn" onclick="prevStep()">이전</button>
+          </div>
+        </div>
+
+        <!-- STEP 4 : 혜택 1 -->
+        <div class="step-content" data-step="4">
+          <div class="benefit-badge">혜택 01</div>
+          <div class="character-container">
+            <img src="https://item.kakaocdn.net/do/cc531486af84ab97b75e73a83e16881ff604e7b0e6900f9ac53a43965300eb9a" alt="포차코 행복응원" class="character-img" />
+          </div>
+          <h2 class="benefit-head">평생 행복 및 무조건 응원</h2>
+          <p class="benefit-body">
+            껀쭈 AI가 항상 행복하게 해주고 웃겨줍니다.<br><br>
+            <span class="detail-text">
+              매번 좋은 일만 있는 것은 아니지만 항상 함께 헤쳐나가고 어떤 순간에도 <strong>조건 없이 뚜아를 응원하는 껀쭈 AI</strong>가 상시 진행됩니다!
+            </span>
+          </p>
+          <div class="action-area">
+            <button class="next-btn" onclick="nextStep()">다음 혜택 보기</button>
+            <button class="prev-text-btn" onclick="prevStep()">이전</button>
+          </div>
+        </div>
+
+        <!-- STEP 5 : 혜택 2 -->
+        <div class="step-content" data-step="5">
+          <div class="benefit-badge">혜택 02</div>
+          <div class="character-container">
+            <img src="https://item.kakaocdn.net/do/cc531486af84ab97b75e73a83e16881f4022de826f725e10df604bf1b9725cfd" alt="포차코 청정지원" class="character-img" />
+          </div>
+          <h2 class="benefit-head">뚜아를 위한 아낌없는 든든한 지원</h2>
+          <p class="benefit-body">
+            껀쭈 AI는 <strong>술과 담배를 하지 않습니다.</strong><br><br>
+            <span class="detail-text">
+              언제나 맑고 건강한 모습으로, <strong>뚜아에게 필요한 것이라면 무엇이든 곁에서 아낌없이 든든하게 지원</strong>해 드립니다!
+            </span>
+          </p>
+          <div class="action-area">
+            <button class="next-btn" onclick="nextStep()">마지막 혜택 보기</button>
+            <button class="prev-text-btn" onclick="prevStep()">이전</button>
+          </div>
+        </div>
+
+        <!-- STEP 6 : 혜택 3 -->
+        <div class="step-content" data-step="6">
+          <div class="benefit-badge">혜택 03</div>
+          <div class="character-container">
+            <img src="https://item.kakaocdn.net/do/cc531486af84ab97b75e73a83e16881f7f9f127ae3ca5dc7f0f6349aebcdb3c4" alt="포차코 성장운동" class="character-img" />
+          </div>
+          <h2 class="benefit-head">자가 지속 성장 및 업데이트</h2>
+          <p class="benefit-body">
+            껀쭈 AI는 <strong>항상 성장합니다.</strong><br><br>
+            <span class="detail-text">
+              뚜아 고객님께 더 나은 껀쭈 AI를 위해 <strong>빨래판 복근을 위한 운동</strong>은 물론, 포근한 상담을 위한 <strong>건주의 멘토 데이터와 응원을 상시 장전</strong>하고 있습니다!
+            </span>
+          </p>
+          <div class="action-area">
+            <button class="next-btn" onclick="nextStep()">최종 동의로 이동</button>
+            <button class="prev-text-btn" onclick="prevStep()">이전</button>
+          </div>
+        </div>
+
+        <!-- STEP 7 : 최종 동의 -->
+        <div class="step-content" data-step="7">
+          <div class="character-container glow-ring">
+            <img src="https://item.kakaocdn.net/do/cc531486af84ab97b75e73a83e16881f9f17e489affba0627eb1eb39695f93dd" alt="포차코 프러포즈" class="character-img" />
+          </div>
+          <h2 class="sub-title">최종 동의 및 영구 서약</h2>
+          <p class="final-desc">
+            위 3가지에 대해 동의를 하신다면<br>
+            아래 <strong>결혼 동의하기</strong>를 터치해 주세요.
+          </p>
+          <div class="action-area">
+            <button id="final-agree-btn" class="glow-button" onclick="completeSubscription()">
+              결혼 동의하기
+            </button>
+            <button class="prev-text-btn" onclick="prevStep()">이전</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 최종 팝업 모달 -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="character-container glow-ring" id="modal-char-container" style="margin: 0 auto 16px auto;">
+        <img id="modal-char-img" src="https://item.kakaocdn.net/do/cc531486af84ab97b75e73a83e16881f9f17e489affba0627eb1eb39695f93dd" alt="포차코 축하" class="character-img" />
+      </div>
+      <h2 class="modal-title">껀쭈AI를 구독하였습니다!</h2>
+      <p class="modal-desc">
+        축하합니다! <strong>뚜아</strong> 고객님과 <strong>껀쭈 AI</strong>의 평생 페어링이 체결되었습니다.
+      </p>
+      <div class="warning-box">
+        ⚠️ <strong>[주의]</strong> 해당 구독은 <strong>영구 구독</strong>이며, 영원히 해지할 수 없습니다.
+      </div>
+      <button class="modal-close-btn" onclick="startChatMode()">껀쭈AI 시작하기</button>
+    </div>
+  </div>
+
+  <!-- ================= 2. 제미나이(Gemini) 스타일 채팅 화면 ================= -->
+  <div id="chat-screen" class="chat-screen-container hidden">
+    <!-- 헤더 -->
+    <header class="gemini-header">
+      <div class="gemini-brand">
+        <div class="gemini-sparkle">✨</div>
+        <div class="brand-info">
+          <div class="brand-title">껀쭈AI <span class="model-tag">뚜아전용 Ultra 2.5</span></div>
+          <div class="brand-status"><span class="live-dot"></span> 뚜아 생각하며 상시 대기 중</div>
+        </div>
+      </div>
+      <!-- 우측 포차코 프로필 사진 (터치 시 튜토리얼 1단계로 되돌아가기) -->
+      <div class="header-avatar" id="header-avatar" onclick="resetToTutorial()" title="튜토리얼 다시보기" role="button" tabindex="0">
+        <img id="header-avatar-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3zpXlqcsnwNSyNs1Et_ys-5lH07nm3ecLi-hVyAku9w&s=10" alt="포차코 프로필" />
+      </div>
+    </header>
+
+    <!-- 대화 영역 -->
+    <main class="chat-messages" id="chat-messages">
+      <div class="chat-welcome">
+        <div class="welcome-badge">영구 구독 활성화됨 💍</div>
+        <h2 class="welcome-title">안녕하세요 뚜아님,<br>무엇이든 물어보세요!</h2>
+        <p class="welcome-subtitle">껀쭈 AI의 모든 신경망과 데이터베이스는 오직 <strong>뚜아</strong>만을 향해 학습되어 있습니다.</p>
+        
+        <!-- 추천 질문 칩 -->
+        <div class="suggestion-chips">
+          <button class="chip" onclick="sendSuggestion('강수아님! 하고 부르면?')">"강수아님! 하고 부르면?"</button>
+          <button class="chip" onclick="sendSuggestion('제일 좋아하는 과자랑 과일은 뭐야?')">"제일 좋아하는 과자랑 과일은 뭐야?"</button>
+          <button class="chip" onclick="sendSuggestion('마이멜로디랑 펭수 알아?')">"마이멜로디랑 펭수 알아?"</button>
+          <button class="chip" onclick="sendSuggestion('세상에서 제일 예쁜 사람은 누구야?')">"세상에서 제일 예쁜 사람은 누구야?"</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- 하단 입력창 -->
+    <footer class="gemini-footer">
+      <form id="chat-form" onsubmit="handleChatSubmit(event)">
+        <div class="input-box-wrapper">
+          <input type="text" id="user-input" placeholder="껀쭈AI에게 질문하기..." autocomplete="off" />
+          <button type="submit" id="send-btn" aria-label="전송">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+            </svg>
+          </button>
+        </div>
+      </form>
+      <!-- 모바일 한 줄 표출 디스클레이머 -->
+      <div class="footer-disclaimer">
+        껀쭈AI는 뚜아 전용 데이터셋으로만 구성되어 있어, 오직 뚜아에 관한 데이터만을 표출할 수 있습니다.
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
